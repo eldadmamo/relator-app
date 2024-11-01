@@ -129,7 +129,7 @@ export class HomeService {
             return new HomeResponseDto(home);
           }
 
-          async updateHomeById(id: number, data: UpdateHomeParams,){
+          async updateHomeById(id: number, data: UpdateHomeParams){
             const home = await this.prismaService.home.findUnique({
                 where:{
                     id

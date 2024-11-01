@@ -1,13 +1,13 @@
-import { Controller,Post, Body } from '@nestjs/common';
+import { Controller,Post, Body, Param } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { SigninDto, SignupDto } from '../dtos/auth.dtos';
+import { GenerateProductKeyDto, SigninDto, SignupDto } from '../dtos/auth.dtos';
 
 @Controller('auth')
 export class AuthController {
 
     constructor(private readonly authService: AuthService){}
 
-    @Post('/signup')
+    @Post('/signup/:userType')
     signup(
         @Body() body: SignupDto
     ){
@@ -19,5 +19,12 @@ export class AuthController {
         @Body() body: SigninDto
     ){
         return this.authService.signin(body);
+    }
+
+    @Post("/key")
+    generateProductKey(
+        @Body() {userType,email}: GenerateProductKeyDto
+    ){
+        return this.authService.generateProductKey(email,userType);
     }
 }

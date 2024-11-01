@@ -34,6 +34,7 @@ model Home {
   number_of_bedrooms      Int
   number_of_bathrooms     Float
   city                    String
+  listed_at               DateTime     @default(now())
   price                   Float
   land_size               Float
   propertyType            propertyType
